@@ -11,6 +11,10 @@
   changed_when: False
   failed_when: cpu_check.stdout|int < min_cpus
 
+- name: Enable repositories required for OCR
+  command: subscription-manager repos --enable="{{ item }}"
+  with_items: "{{ repos_to_enable }}"
+
 - name: Install base packages required for OCR
   yum:
     name: "{{ item }}"
