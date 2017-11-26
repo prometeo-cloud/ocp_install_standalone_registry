@@ -1,0 +1,34 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: ocp-install-standalone-registry
+    box: rehl74_sub
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: vagrant
+  test_sequence:
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+#    - idempotence
+#    - lint
+    - side_effect
+    - verify
+      - destroy
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

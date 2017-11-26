@@ -1,0 +1,4 @@
+---
+- name: ocp_configure_node
+  src: https://github.com/prometeo-cloud/ocp_configure_node
+...

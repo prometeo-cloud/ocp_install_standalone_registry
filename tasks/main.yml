@@ -1,0 +1,41 @@
+---
+- name: Ensuring the Extras repository is enabled
+  command: subscription-manager repos --enable="rhel-7-server-extras-rpms"
+
+- name: Checking minimum memory requirement
+   shell: free | awk '/Mem/ {print $2}'
+   register: mem_check
+   changed_when: False
+   failed_when: mem_check.stdout|int < ( {{ min_memory }} * 1024 * 1024 )
+
+- name: Checking minimum number of CPUs requirement
+  shell: cat /proc/cpuinfo | grep "^processor" | wc -l
+  register: cpu_check
+  changed_when: False
+  failed_when: cpu_check.stdout|int < min_cpus
+
+- name: Install base packages required for OCR
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages_to_install }}"
+
+- name: Copying the inventory file to the host
+  template:
+    src: inventory.j2
+    dest: /usr/share/ansible/openshift-ansible/playbooks/byo/ocr_standalone_inventory
+
+- name: Installing the Standalone Registry
+  command: ansible-playbook -i ocr_standalone_inventory config.yml
+  args:
+    chdir: /usr/share/ansible/openshift-ansible/playbooks/byo
+
+- name: Un-installing Ansible-OCP playbooks
+  yum:
+    name: "openshift-ansible-playbooks-{{ ocp_version }}"
+    state: absent
+
+- name: Un-installing Ansible
+  yum:
+    name: "ansible"
+    state: absent
