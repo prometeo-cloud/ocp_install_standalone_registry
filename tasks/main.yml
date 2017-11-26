@@ -1,7 +1,4 @@
 ---
-- name: Ensuring the Extras repository is enabled
-  command: subscription-manager repos --enable="rhel-7-server-extras-rpms"
-
 - name: Checking minimum memory requirement
    shell: free | awk '/Mem/ {print $2}'
    register: mem_check
