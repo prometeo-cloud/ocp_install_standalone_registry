@@ -37,7 +37,7 @@ So that it can be used as a Master Registry to provide base images to a group of
 
 | Variable  | Description  | Example |
 |---|---|---|
-| **{{ customer_name }}** | The customer name with no blank spaces. | acme_corp |
 | **{{ ldap_hostname }}** | The hostname of the LDAP host to be used by the registry | www.ldaphost.com |
-
-
+| **{{ ldap_url }}** | The URL of the LDAP server. | ldap://www.example.com/ou=users,dc=acme,dc=com?uid |
+| **{{ ldap_certificate }}** | | ldap-ca-bundle.crt |
+| **{{ ldap_insecure }}** |  | false |

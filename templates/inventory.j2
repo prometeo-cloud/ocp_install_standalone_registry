@@ -23,7 +23,7 @@ deployment_subtype=registry
 
 # uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
 #openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-openshift_master_identity_providers=[{"identityProviders": [{"name": "{{ customer_name }}_ldap_provider","challenge": true,"login": true,"mappingMethod": "claim","provider": {"apiVersion": "v1","kind": "LDAPPasswordIdentityProvider","attributes": {"id": ["dn"],"email": ["mail"],"name": ["cn"],"preferredUsername": ["uid"]},"bindDN": "","bindPassword": "","ca": "{{ customer_name }}-ldap-ca-bundle.crt","insecure": "false","url": "ldap://{{ ldap_hostname }}/ou=users,dc=acme,dc=com?uid"}}]}]
+openshift_master_identity_providers=[{"identityProviders": [{"name": "default_ldap_provider","challenge": true,"login": true,"mappingMethod": "claim","provider": {"apiVersion": "v1","kind": "LDAPPasswordIdentityProvider","attributes": {"id": ["dn"],"email": ["mail"],"name": ["cn"],"preferredUsername": ["uid"]},"bindDN": "","bindPassword": "","ca": "{{ ldap_certificate }}","insecure": "{{ ldap_insecure }}","url": "{{ ldap_url }}"}}]}]
 
 # host group for masters
 [masters]
