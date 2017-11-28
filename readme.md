@@ -33,3 +33,11 @@ So that it can be used as a Master Registry to provide base images to a group of
 | **repos_to_enable** | List of repositories to be enabled. | as described in Vars |
 | **packages_to_install** | List of packages to be installed. | as described in Vars |
 
+### LDAP Integration Variables
+
+| Variable  | Description  | Example |
+|---|---|---|
+| **{{ customer_name }}** | The customer name with no blank spaces. | acme_corp |
+| **{{ ldap_hostname }}** | The hostname of the LDAP host to be used by the registry | www.ldaphost.com |
+
+
