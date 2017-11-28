@@ -5,5 +5,5 @@ repos_to_enable:
 
 packages_to_install:
   - ansible
-  - "openshift-ansible-playbooks-{{ ocp_version }}"
+  - openshift-ansible
 ...
