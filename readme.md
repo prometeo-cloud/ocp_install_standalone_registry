@@ -41,3 +41,19 @@ So that it can be used as a Master Registry to provide base images to a group of
 | **ldap_url** | The URL of the LDAP server. | ldap://www.example.com/ou=users,dc=acme,dc=com?uid |
 | **ldap_certificate_file** | | ldap-ca-bundle.crt |
 | **ldap_insecure** |  | false |
+
+## Testing
+
+To set up a local ldap server to test the integration:
+
+```bash
+# starts a docker container running open-ldap
+$ docker run --name open_ldap --hostname localhost --detach -p 389:389 -p 636:636 osixia/openldap:1.1.10
+
+# running a query
+ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,dc=org" -w admin
+
+# starts the admin interface
+docker run -p 6443:443 --name open_ldap_admin --env PHPLDAPADMIN_LDAP_HOSTS=localhost --detach osixia/phpldapadmin:0.7.0
+
+```
