@@ -4,6 +4,5 @@ repos_to_enable:
   - rhel-7-fast-datapath-rpms
 
 packages_to_install:
-  - ansible
   - openshift-ansible
 ...

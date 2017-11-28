@@ -18,13 +18,4 @@
   command: ansible-playbook -i ocr_standalone_inventory config.yml
   args:
     chdir: /usr/share/ansible/openshift-ansible/playbooks/byo
-
-- name: Un-installing Ansible-OCP playbooks
-  yum:
-    name: "openshift-ansible-playbooks-{{ ocp_version }}"
-    state: absent
-
-- name: Un-installing Ansible
-  yum:
-    name: "ansible"
-    state: absent
+...

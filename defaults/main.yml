@@ -1,5 +1,2 @@
 ---
-min_memory: 16
-min_cpus: 2
-ocp_version: 3.6
 ...
