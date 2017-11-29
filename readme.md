@@ -56,6 +56,10 @@ Requires setting **id_provider_type** variable to 'LDAP'.
 
 ## Testing
 
+| Variable  | Description  | Example |
+|---|---|---|
+| **test_mode** | Set this variable if you are testing using Vagrant. So that the Vagrant ssh key is set in the inventory. | true | 
+
 To set up a local ldap server to test the integration:
 
 ```bash
