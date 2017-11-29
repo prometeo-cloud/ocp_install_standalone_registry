@@ -7,9 +7,10 @@ Install a standalone Docker registry running in a container.
 ## Behaviour:
 
 **Feature:** Install the Standalone OpenShift Container Registry
-As a System Admin
-I want to install a Standalone OpenShift Container Registry
-So that it can be used as a Master Registry to provide base images to a group of OCP clusters.
+
+**As a** System Admin  
+**I want to** install a Standalone OpenShift Container Registry  
+**So that** it can be used as a Master Registry to provide base images to a group of OCP clusters.
 
 **Scenario:** Install OpenShift Container Registry (OCR)
 - **Given** a RHEL machine has been configured as an OCP node
