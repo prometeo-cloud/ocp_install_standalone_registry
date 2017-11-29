@@ -21,7 +21,17 @@ So that it can be used as a Master Registry to provide base images to a group of
 
 ## Configuration
 
-### Variables
+### Connection Variables
+
+The following variables should be provided to establish a connection to the remote hosts:
+
+| Variable  | Description  | Example |
+|---|---|---|
+|**ansible_ssh_user**| The name of the sudo user used to connect to the remote host. | "vagrant" |
+|**ansible_become**| Should be set to true to allow the user to sudo.| true |
+|**ansible_ssh_private_key_file**| The location of the private key to use to connect to the remote host. | "~/.ssh/vagrant_private_key"|
+
+### General Variables
 
 | Variable  | Description  | Default value |
 |---|---|---|
@@ -55,10 +65,6 @@ Requires setting **id_provider_type** variable to 'LDAP'.
 | **ldap_insecure** | When true, no TLS connection is made to the server. When false, ldaps:// URLs connect using TLS, and ldap:// URLs are upgraded to TLS. | true (defaults to false) | no |
 
 ## Testing
-
-| Variable  | Description  | Example |
-|---|---|---|
-| **test_mode** | Set this variable if you are testing using Vagrant. So that the Vagrant ssh key is set in the inventory. | true | 
 
 To set up a local ldap server to test the integration:
 

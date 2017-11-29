@@ -9,10 +9,11 @@
     chdir: openshift-ansible
   delegate_to: localhost
 
-- name: Copyng ansible.cfg
+- name: Copying ansible.cfg
   copy:
     src: ansible.cfg
     dest: openshift-ansible/playbooks/byo/ansible.cfg
+  delegate_to: localhost
 
 - name: Copying the inventory file to the host
   template:
