@@ -33,14 +33,28 @@ So that it can be used as a Master Registry to provide base images to a group of
 | **repos_to_enable** | List of repositories to be enabled. | as described in Vars |
 | **packages_to_install** | List of packages to be installed. | as described in Vars |
 
+### No-Authentication
+
+Requires setting **id_provider_type** variable to an empty string.
+
+### HTPasswd authentication
+
+Requires setting **id_provider_type** variable to "HTPasswd".
+
+| Variable  | Description  | Default |
+|---|---|---|
+| **htpasswd_filename** | The location of the htpasswd file to be used. | /etc/origin/master/htpasswd |
+
 ### LDAP Integration Variables
 
-| Variable  | Description  | Example |
-|---|---|---|
-| **ldap_hostname** | The hostname of the LDAP host to be used by the registry | www.ldaphost.com |
-| **ldap_url** | The URL of the LDAP server. | ldap://www.example.com/ou=users,dc=acme,dc=com?uid |
-| **ldap_certificate_file** | | ldap-ca-bundle.crt |
-| **ldap_insecure** |  | false |
+Requires setting **id_provider_type** variable to 'LDAP'.
+
+| Variable  | Description  | Example | Mandatory |
+|---|---|---|---|
+| **ldap_hostname** | The hostname of the LDAP host to be used by the registry | www.ldaphost.com | yes |
+| **ldap_url** | The URL of the LDAP server. |  ldap://www.example.com/ou=users,dc=acme,dc=com?uid | yes |
+| **ldap_certificate_file** | Certificate bundle to use to validate server certificates for the configured URL. If empty, system trusted roots are used. Only applies if insecure: false. | ldap-ca-bundle.crt (defaults to an empty string)| no |
+| **ldap_insecure** | When true, no TLS connection is made to the server. When false, ldaps:// URLs connect using TLS, and ldap:// URLs are upgraded to TLS. | true (defaults to false) | no |
 
 ## Testing
 

@@ -1,2 +1,5 @@
 ---
+htpasswd_filename: '/etc/origin/master/htpasswd'
+ldap_insecure: 'false'
+openshift_ansible_version: "release-3.6"
 ...

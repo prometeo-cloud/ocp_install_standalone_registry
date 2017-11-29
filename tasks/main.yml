@@ -9,13 +9,21 @@
     state: latest
   with_items: "{{ packages_to_install }}"
 
+- name: Cloning OpenShift-Ansible playbooks to the localhost
+  command: git clone https://github.com/openshift/openshift-ansible && git checkout {{ openshift_ansible_version }}
+  args:
+      chdir: ansible/
+  delegate_to: localhost
+
 - name: Copying the inventory file to the host
   template:
     src: inventory.j2
-    dest: /usr/share/ansible/openshift-ansible/playbooks/byo/ocr_standalone_inventory
+    dest: ansible/openshift-ansible/playbooks/byo/ocr_standalone_inventory
+  delegate_to: localhost
 
 - name: Installing the Standalone Registry
   command: ansible-playbook -i ocr_standalone_inventory config.yml
   args:
-    chdir: /usr/share/ansible/openshift-ansible/playbooks/byo
+    chdir: ansible/openshift-ansible/playbooks/byo
+  delegate_to: localhost
 ...
