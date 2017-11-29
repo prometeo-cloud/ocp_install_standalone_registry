@@ -21,11 +21,12 @@ openshift_master_default_subdomain={{ master_default_subdomain }}
 deployment_type=openshift-enterprise
 deployment_subtype=registry
 
-# Configure the Identity Provider to use, driven by 'id_provider_type' possible values are:
-# id_provider_type="" -> Insecure
+{% if id_provider_type %}
+# Configure the Identity Provider to use, driven by 'id_provider_type' possible values are
 # id_provider_type="HTPasswd" -> HTPassword provider
 # id_provider_type="LDAP" -> LDAP provider
-{% if id_provider_type != '' %}openshift_master_identity_providers=[{"identityProviders":[{% if id_provider_type == 'HTPasswd' %}{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '{{ htpasswd_filename }}'},{% elif id_provider_type == 'LDAP' %}{"name": "default_ldap_provider","challenge": true,"login": true,"mappingMethod": "claim","provider": {"apiVersion": "v1","kind": "LDAPPasswordIdentityProvider","attributes": {"id": ["dn"],"email": ["mail"],"name": ["cn"],"preferredUsername": ["uid"]},"bindDN": "","bindPassword": "","ca": "{{ ldap_certificate_file }}","insecure": "{{ ldap_insecure }}","url": "{{ ldap_url }}"}},{% endif %}}]{% endif %}
+openshift_master_identity_providers=[{"identityProviders":[{% if id_provider_type == 'HTPasswd' %}{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '{{ htpasswd_filename }}'},{% elif id_provider_type == 'LDAP' %}{"name": "default_ldap_provider","challenge": true,"login": true,"mappingMethod": "claim","provider": {"apiVersion": "v1","kind": "LDAPPasswordIdentityProvider","attributes": {"id": ["dn"],"email": ["mail"],"name": ["cn"],"preferredUsername": ["uid"]},"bindDN": "","bindPassword": "","ca": "{{ ldap_certificate_file }}","insecure": "{{ ldap_insecure }}","url": "{{ ldap_url }}"}},{% endif %}}]
+{% endif %}
 
 # host group for masters
 [masters]

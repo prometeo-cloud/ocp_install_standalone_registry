@@ -1,29 +1,28 @@
 ---
-- name: Enable repositories required for OCR
-  command: subscription-manager repos --enable="{{ item }}"
-  with_items: "{{ repos_to_enable }}"
-
-- name: Install base packages required for OCR
-  yum:
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ packages_to_install }}"
-
 - name: Cloning OpenShift-Ansible playbooks to the localhost
-  command: git clone https://github.com/openshift/openshift-ansible && git checkout {{ openshift_ansible_version }}
-  args:
-      chdir: ansible/
+  command: git clone https://github.com/openshift/openshift-ansible
   delegate_to: localhost
+
+- name: Checking out branch {{ openshift_ansible_version }}
+  command: git checkout {{ openshift_ansible_version }}
+  args:
+    chdir: openshift-ansible
+  delegate_to: localhost
+
+- name: Copyng ansible.cfg
+  copy:
+    src: ansible.cfg
+    dest: openshift-ansible/playbooks/byo/ansible.cfg
 
 - name: Copying the inventory file to the host
   template:
     src: inventory.j2
-    dest: ansible/openshift-ansible/playbooks/byo/ocr_standalone_inventory
+    dest: openshift-ansible/playbooks/byo/ocr_standalone_inventory
   delegate_to: localhost
 
 - name: Installing the Standalone Registry
   command: ansible-playbook -i ocr_standalone_inventory config.yml
   args:
-    chdir: ansible/openshift-ansible/playbooks/byo
+    chdir: openshift-ansible/playbooks/byo
   delegate_to: localhost
 ...
