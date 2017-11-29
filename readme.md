@@ -25,13 +25,11 @@ So that it can be used as a Master Registry to provide base images to a group of
 
 | Variable  | Description  | Default value |
 |---|---|---|
-| **registry_host_name** | The registry host name. | None |
+| **registry_host_names** | The list of host names for the registry. | None |
 | **master_default_subdomain** | The default sub-domain for the OCP master. | None |
-| **min_memory** | Minimum memory in GB required by the OCR. | 16 |
-| **min_cpus** | Minimum CPUs required by the OCR. | 2 |
-| **ocp_version** | The version of OCP's OCR to install. | 3.6 |
 | **repos_to_enable** | List of repositories to be enabled. | as described in Vars |
 | **packages_to_install** | List of packages to be installed. | as described in Vars |
+| **openshift_ansible_version** | The openshift-ansible github project release tag.  | release-3.6 |
 
 ### No-Authentication
 
@@ -51,7 +49,7 @@ Requires setting **id_provider_type** variable to 'LDAP'.
 
 | Variable  | Description  | Example | Mandatory |
 |---|---|---|---|
-| **ldap_hostname** | The hostname of the LDAP host to be used by the registry | www.ldaphost.com | yes |
+| **ldap_hostnames** | The hostname(s) of the LDAP host to be used by the registry | www.ldaphost.com | yes |
 | **ldap_url** | The URL of the LDAP server. |  ldap://www.example.com/ou=users,dc=acme,dc=com?uid | yes |
 | **ldap_certificate_file** | Certificate bundle to use to validate server certificates for the configured URL. If empty, system trusted roots are used. Only applies if insecure: false. | ldap-ca-bundle.crt (defaults to an empty string)| no |
 | **ldap_insecure** | When true, no TLS connection is made to the server. When false, ldaps:// URLs connect using TLS, and ldap:// URLs are upgraded to TLS. | true (defaults to false) | no |
