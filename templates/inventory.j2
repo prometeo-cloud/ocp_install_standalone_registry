@@ -13,6 +13,10 @@ openshift_master_default_subdomain={{ master_default_subdomain }}
 deployment_type=openshift-enterprise
 deployment_subtype=registry
 
+ansible_become="True"
+ansible_ssh_user="{{ ocp_ansible_ssh_user }}"
+ansible_ssh_private_key_file="{{ ocp_ansible_ssh_private_key_file }}"
+
 {% if id_provider_type %}
 # Configure the Identity Provider to use, driven by 'id_provider_type' possible values are
 # id_provider_type="HTPasswd" -> HTPassword provider

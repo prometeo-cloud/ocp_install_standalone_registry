@@ -28,9 +28,8 @@ The following variables should be provided to establish a connection to the remo
 
 | Variable  | Description  | Example |
 |---|---|---|
-|**ansible_ssh_user**| The name of the sudo user used to connect to the remote host. | "vagrant" |
-|**ansible_become**| Should be set to true to allow the user to sudo.| true |
-|**ansible_ssh_private_key_file**| The location of the private key to use to connect to the remote host. | "~/.ssh/vagrant_private_key"|
+|**ocp_ansible_ssh_user**| The name of the sudo user used to connect to the remote host. | "vagrant" |
+|**ocp_ansible_ssh_private_key_file**| The location of the private key to use to connect to the remote host. | "~/.ssh/private_key"|
 
 ### General Variables
 
@@ -44,11 +43,11 @@ The following variables should be provided to establish a connection to the remo
 
 ### No-Authentication
 
-Requires setting **id_provider_type** variable to an empty string.
+**NOTE**: Requires setting **id_provider_type** variable to an empty string.
 
 ### HTPasswd authentication
 
-Requires setting **id_provider_type** variable to "HTPasswd".
+**NOTE**: Requires setting **id_provider_type** variable to "HTPasswd".
 
 | Variable  | Description  | Default |
 |---|---|---|
@@ -56,7 +55,7 @@ Requires setting **id_provider_type** variable to "HTPasswd".
 
 ### LDAP Integration Variables
 
-Requires setting **id_provider_type** variable to 'LDAP'.
+**NOTE**: Requires setting **id_provider_type** variable to 'LDAP'.
 
 | Variable  | Description  | Example | Mandatory |
 |---|---|---|---|
