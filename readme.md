@@ -79,3 +79,17 @@ ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,d
 docker run -p 6443:443 --name open_ldap_admin --env PHPLDAPADMIN_LDAP_HOSTS=localhost --detach osixia/phpldapadmin:0.7.0
 
 ```
+
+## Usage:
+
+How to invoke the role from a playbook:
+
+```yaml
+- name: Check OCP Node
+  include_role:
+    name: ocp_install_standalone_registry
+  vars:
+    ocp_ansible_ssh_user: 'vagrant'
+    ocp_ansible_ssh_private_key_file: '~/.vagrant.d/insecure_private_key'
+    id_provider_type: ''
+```
